@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AskCooper — The Complete Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --green:#0eb969;--green-d:#0a9a56;--green-mid:#55ce97;--green-pale:#eef9f3;
+  --green-xl:#f0faf7;--green-dark:#152b22;
+  --ink:#1a1a1a;--body:#3f4a45;--muted:#526862;--light:#8a9c96;
+  --white:#fff;--paper:#fbfaf7;--bg-alt:#f7f9f8;
+  --border:#d4ede6;--border-l:#e7efe9;
+  --amber:#d97706;--rose:#be3144;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Figtree',-apple-system,system-ui,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --r:14px;--r-sm:8px;--r-pill:9999px;
+  --max:1160px;
+  --shadow-card:0 1px 2px #0f1f1a0a,0 2px 8px #0f1f1a0a;
+  --shadow-shot:0 8px 32px #0f1f1a14,0 24px 80px #0a50321f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--body);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);color:var(--ink);font-weight:700;line-height:1.15;letter-spacing:-.02em}
+a{color:var(--green);text-decoration:none}
+
+/* ---------- layout shell ---------- */
+.shell{display:grid;grid-template-columns:260px 1fr;max-width:var(--max);margin:0 auto;gap:56px;padding:0 clamp(16px,4vw,32px)}
+@media(max-width:900px){.shell{grid-template-columns:1fr;gap:0}}
+
+/* ---------- sidebar ---------- */
+.side{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:40px 0}
+@media(max-width:900px){.side{position:static;height:auto;border-bottom:1px solid var(--border-l);padding:24px 0}}
+.side .brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.side .brand img{width:34px;height:34px;border-radius:8px}
+.side .brand span{font-family:var(--serif);font-weight:700;font-size:18px;color:var(--ink)}
+.nav-label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--light);margin:20px 0 8px}
+.side nav a{display:block;font-size:14px;color:var(--muted);padding:5px 0 5px 12px;border-left:2px solid transparent;transition:.15s}
+.side nav a:hover{color:var(--ink)}
+.side nav a.active{color:var(--green-d);border-left-color:var(--green);font-weight:600}
+
+/* ---------- main ---------- */
+main{padding:56px 0 96px;min-width:0}
+
+/* hero */
+.hero{padding-bottom:48px;border-bottom:1px solid var(--border-l);margin-bottom:16px}
+.hero .kicker{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--green-d);margin-bottom:16px}
+.hero h1{font-size:clamp(36px,5vw,52px);margin-bottom:20px;max-width:16ch}
+.hero .lede{font-size:19px;color:var(--muted);max-width:56ch}
+.hero .meta{margin-top:24px;display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--light);font-family:var(--mono)}
+.hero .meta b{color:var(--green-d);font-weight:500}
+
+/* section */
+.sec{padding:56px 0;border-bottom:1px solid var(--border-l)}
+.overline{font-family:var(--sans);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--green-d);margin-bottom:12px}
+.sec h2{font-size:clamp(26px,3.5vw,34px);margin-bottom:16px}
+.sec h3{font-size:20px;margin:32px 0 10px}
+.sec p{margin-bottom:16px;max-width:64ch}
+.sec p.small{font-size:14px;color:var(--muted)}
+
+/* lifecycle strip */
+.cycle{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.cycle .step{display:flex;align-items:center;gap:8px;font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:var(--green-xl);border:1px solid var(--border);border-radius:var(--r-pill);padding:7px 14px}
+.cycle .step b{color:var(--green-d);font-weight:600}
+.cycle .arw{color:var(--light);align-self:center}
+
+/* prompt chips */
+.prompts{margin:20px 0 8px}
+.prompts .plabel{font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--light);margin-bottom:10px}
+.chip{display:inline-block;font-size:14px;color:var(--ink);background:var(--green-xl);border:1px solid var(--border);border-radius:var(--r-pill);padding:7px 15px;margin:0 8px 8px 0}
+.chip::before{content:"\201C";color:var(--green-d)}
+.chip::after{content:"\201D";color:var(--green-d)}
+
+/* screenshot placeholder */
+.shot{margin:24px 0 8px;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-shot);border:1px solid var(--border)}
+.shot .frame{aspect-ratio:16/9;background:repeating-linear-gradient(45deg,#f4faf7,#f4faf7 14px,#eef7f2 14px,#eef7f2 28px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}
+.shot .frame .tag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--green-d);background:var(--white);border:1px solid var(--border);border-radius:var(--r-pill);padding:4px 12px;margin-bottom:12px}
+.shot .frame .desc{font-size:14px;color:var(--muted);max-width:44ch}
+.shot video,.shot img.media{display:block;width:100%;height:auto;background:transparent}
+.shot .vidcrop{overflow:hidden;line-height:0}
+.shot .vidcrop video{margin-bottom:-1.4%} /* clip only the bottom black strip, no zoom */
+.shot .cap{font-size:13px;color:var(--light);padding:12px 16px;background:var(--paper);border-top:1px solid var(--border-l)}
+
+/* callout */
+.note{background:var(--green-pale);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px;margin:24px 0;font-size:14px;color:var(--muted)}
+.note b{color:var(--green-dark)}
+
+/* prompt library table */
+table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--border-l);vertical-align:top}
+th{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--light);font-weight:500}
+td.cap-cell{color:var(--ink);font-weight:600;white-space:nowrap}
+td.prompt-cell{color:var(--muted);font-style:italic}
+
+/* trust / close */
+.trust{background:var(--green-dark);color:#dfeee7;border-radius:var(--r);padding:40px;margin:56px 0}
+.trust h2{color:#fff}
+.trust p{color:#b8cfc5;max-width:60ch}
+.badges{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}
+.badges span{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:#8fb9a8;border:1px solid #2d4a3c;border-radius:var(--r-pill);padding:6px 14px}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="side">
+    <div class="brand">
+      <img src="https://app.culturemonkey.io/assets/cooper_logo-ba93fe183901ab0177f239f8a95dce1fb5ad47e9004ad5840202441d3e05cd9b.png" alt="Cooper" />
+      <span>AskCooper</span>
+    </div>
+    <div class="nav-label">From launch to impact</div>
+    <nav id="nav">
+      <a href="#start">Getting started</a>
+      <a href="#live">01 · Boost participation</a>
+      <a href="#basics">02 · Get your results</a>
+      <a href="#opentext">03 · Read the comments</a>
+      <a href="#segments">04 · Break down by team</a>
+      <a href="#heatmap">05 · Heatmaps &amp; export</a>
+      <a href="#benchmarks">06 · Compare &amp; benchmark</a>
+      <a href="#org">07 · Map your org</a>
+      <a href="#diagnostics">08 · Explain the changes</a>
+      <a href="#forecast">09 · Forecast &amp; risk</a>
+      <a href="#drivers">10 · Run what-if scenarios</a>
+      <a href="#act">11 · Build action plans</a>
+      <a href="#managers">12 · Coach managers</a>
+      <a href="#prove">13 · Measure impact</a>
+      <a href="#trust">14 · Anonymity &amp; safety</a>
+      <a href="#library">15 · Prompt library</a>
+    </nav>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main>
+
+    <!-- HERO -->
+    <header class="hero" id="start">
+      <div class="kicker">The complete guide</div>
+      <h1>Everything you can AskCooper</h1>
+      <p class="lede">Cooper is your AI analyst inside CultureMonkey. Ask any question about your engagement survey in plain English, and get an instant, anonymity-safe answer. This guide follows the survey from the first response to the final decision, with the exact prompts to try at each stage.</p>
+      <div class="meta">
+        <span>Updated on <b>July, 2026</b></span>
+      </div>
+      <div class="cycle">
+        <span class="step"><b>Launch</b></span><span class="arw">&rarr;</span>
+        <span class="step"><b>Listen</b></span><span class="arw">&rarr;</span>
+        <span class="step"><b>Understand</b></span><span class="arw">&rarr;</span>
+        <span class="step"><b>Act</b></span><span class="arw">&rarr;</span>
+        <span class="step"><b>Prove</b></span>
+      </div>
+      <div class="shot" style="margin-top:32px">
+        <div class="vidcrop"><video src="mocks/AC1.mp4" autoplay loop muted playsinline></video></div>
+        <div class="cap">Cooper lives inside your dashboard. Open it, type a question, get an answer.</div>
+      </div>
+    </header>
+
+    <!-- 01 WHILE IT'S LIVE -->
+    <section class="sec" id="live">
+      <div class="overline">Boost participation</div>
+      <h2>Help your survey land, before it closes</h2>
+      <p>The lifecycle starts while responses are still coming in. Cooper projects where participation will finish, flags the teams lagging behind, and tells you the best day to send so you get more responses with less nudging.</p>
+      <div class="prompts">
+        <div class="plabel">Try asking</div>
+        <span class="chip">Will we hit 90% participation?</span>
+        <span class="chip">Which teams will finish with the lowest participation?</span>
+        <span class="chip">Did our reminders work? Should we send another?</span>
+        <span class="chip">What's the best day to send the next survey?</span>
+      </div>
+      <div class="shot">
+        <img class="media" src="mocks/AC2.jpg" alt="Cooper participation projection" />
+        <div class="cap">Chase the right teams while it still counts.</div>
+      </div>
+    </section>
+
+    <!-- 02 THE RESULTS ARE IN -->
+    <section class="sec" id="basics">
+      <div class="overline">Get your results</div>
+      <h2>The moment it closes, you already have answers</h2>
+      <p>Start with the numbers everyone asks for. Cooper reads your closed survey and returns the headline metrics in seconds, no filters or report-building required.</p>
+      <div class="prompts">
+        <div class="plabel">Try asking</div>
+        <span class="chip">Give me an overall summary of this survey</span>
+        <span class="chip">What's our engagement score?</span>
+        <span class="chip">What's the participation rate?</span>
+        <span class="chip">What's our eNPS? Show promoters, passives and detractors</span>
+      </div>
+      <div class="shot">
+        <img class="media" src="mocks/AC3.jpg" alt="Cooper overall summary" />
+        <div class="cap">One question returns engagement, participation, and eNPS together.</div>
+      </div>
+    </section>
+
+    <!-- 03 OPEN TEXT -->
+    <section class="sec" id="opentext">
+      <div class="overline">Open-text feedback</div>
+      <h2>Turn thousands of comments into clarity</h2>
+      <p>Cooper reads every open-text response and returns the themes, the sentiment, and the topics that matter, without you scrolling a single comment. It reports on aggregates and themes only, never raw verbatims.</p>
+      <div class="prompts">
+        <div class="plabel">Try asking</div>
+        <span class="chip">What are employees saying? Top themes and pain points</span>
+        <span class="chip">Are people positive or negative?</span>
+        <span class="chip">How do employees feel about compensation?</span>
+        <span class="chip">Which themes are rising vs last survey?</span>
+        <span class="chip">Give me an executive summary</span>
+      </div>
+      <div class="shot">
+        <img class="media" src="mocks/AC4.jpg" alt="Cooper feedback themes and sentiment" />
+        <div class="cap">Thousands of comments, reduced to the handful of themes that matter.</div>
+      </div>
+    </section>
+
+    <!-- 04 SEGMENTS -->
+    <section class="sec" id="segments">
+      <div class="overline">Segments</div>
+      <h2>Slice it any way you need</h2>
+      <p>Break engagement down by team, location, tenure, business unit, or any custom HR attribute you sync in. Every breakdown enforces anonymity: small groups are suppressed, never shown.</p>
+      <div class="prompts">
+        <div class="plabel">Try asking</div>
+        <span class="chip">Show engagement by team</span>
+        <span class="chip">Engagement by location, which office scores highest?</span>
+        <span class="chip">New joiners vs veterans</span>
+        <span class="chip">Engagement by Global Band</span>
+        <span class="chip">Give me an Excel report by business unit then location then band</span>
+      </div>
+      <p class="small">Every dimension, including your own custom HR attributes, with anonymity enforced on every cut.</p>
+    </section>
+
+    <!-- 05 HEATMAP -->
+    <section class="sec" id="heatmap">
+      <div class="overline">Heatmaps &amp; export</div>
+      <h2>See the whole picture in one view</h2>
+      <p>The driver-by-segment heatmap shows every driver against every team at a glance, and exports straight to Excel. Any Cooper result can become a shareable file with one request.</p>
+      <div class="prompts">
+        <div class="plabel">Try asking</div>
+        <span class="chip">Show an engagement heatmap of drivers by team</span>
+        <span class="chip">Heatmap by location</span>
+        <span class="chip">Export the team breakdown to Excel</span>
+      </div>
+      <div class="shot">
+        <img class="media" src="mocks/AC5.jpg" alt="Cooper engagement heatmap" />
+        <div class="cap">Strong and weak spots across your whole org, in a single grid.</div>
+      </div>
+    </section>
+
+    <!-- 06 BENCHMARKS -->
+    <section class="sec" id="benchmarks">
+      <div class="overline">Benchmarks</div>
+      <h2>Know how you stack up</h2>
+      <p>Compare engagement across your own groups, against your industry, or against anonymised peers. The cold-start peer benchmark answers the hardest first-survey question: is our score any good?</p>
+      <div class="prompts">
+        <div class="plabel">Try asking</div>
+        <span class="chip">How do we compare to our industry?</span>
+        <span class="chip">We just started, what's normal? Is our score good?</span>
+        <span class="chip">Compare engagement across departments, Engineering vs Sales</span>
+      </div>
+      <p class="small">Context for your score, from day one, even on your very first survey.</p>
+    </section>
+
+    <!-- 07 ORG -->
+    <section class="sec" id="org">
+      <div class="overline">Organizational intelligence</div>
+      <h2>Read your org like a map</h2>
+      <p>Cooper reads your reporting structure as a network. It finds the frozen middle, sees whether engagement cascades down from the top, checks whether bigger teams are less engaged, and pinpoints exactly where the drag is coming from.</p>
+      <div class="prompts">
+        <div class="plabel">Try asking</div>
+        <span class="chip">Engagement by org layer, is there a frozen middle?</span>
+        <span class="chip">Does engagement flow down our managers' orgs?</span>
+        <span class="chip">Are bigger teams less engaged?</span>
+        <span class="chip">Where exactly is the drag coming from?</span>
+      </div>
+      <div class="shot">
+        <img class="media" src="mocks/AC6.jpg" alt="Cooper engagement by org layer" />
+        <div class="cap">Layer-by-layer engagement, and where it stalls between levels.</div>
+      </div>
+    </section>
+
+    <!-- 08 DIAGNOSTICS -->
+    <section class="sec" id="diagnostics">
+      <div class="overline">Diagnose &amp; trust</div>
+      <h2>Know why the number moved, and how far to trust it</h2>
+      <p>When a metric changes, Cooper attributes it to the specific teams and questions that drove it. It also scores its own confidence, flags segments too thin to act on, and checks whether your sample is representative.</p>
+      <div class="prompts">
+        <div class="plabel">Try asking</div>
+        <span class="chip">What drove the engagement drop?</span>
+        <span class="chip">What's surprising in this survey?</span>
+        <span class="chip">How much can I trust these numbers?</span>
+        <span class="chip">Is the sample representative or skewed?</span>
+      </div>
+      <p class="small">Every movement, explained and attributed, with a read on how far to trust it.</p>
+    </section>
+
+    <!-- 09 FORECAST -->
+    <section class="sec" id="forecast">
+      <div class="overline">Forecast &amp; risk</div>
+      <h2>See what's coming, not just what happened</h2>
+      <p>Cooper forecasts where engagement is heading and flags the teams most at risk of attrition, so you can act before you lose people rather than reading about it in an exit interview.</p>
+      <div class="prompts">
+        <div class="plabel">Try asking</div>
+        <span class="chip">Predict engagement for next quarter</span>
+        <span class="chip">Which teams are most at risk of attrition?</span>
+        <span class="chip">What emerging risks are showing up?</span>
+        <span class="chip">How has engagement trended over time?</span>
+      </div>
+      <div class="shot">
+        <img class="media" src="mocks/AC7.jpg" alt="Cooper attrition risk watchlist" />
+        <div class="cap">Flight-risk teams and a forward projection, before it costs you.</div>
+      </div>
+    </section>
+
+    <!-- 10 DRIVERS / WHAT-IF -->
+    <section class="sec" id="drivers">
+      <div class="overline">What-if scenarios</div>
+      <h2>Model a decision before you make it</h2>
+      <p>See the drivers behind your score, find the one with the biggest impact, and simulate an improvement. Cooper projects the engagement lift, so you can test where to invest before you commit.</p>
+      <div class="prompts">
+        <div class="plabel">Try asking</div>
+        <span class="chip">Where are we strong and weak?</span>
+        <span class="chip">Which driver impacts engagement the most?</span>
+        <span class="chip">What happens to engagement if we improve Recognition by 10%?</span>
+        <span class="chip">What if we improve Recognition and Work-Life Balance together?</span>
+      </div>
+      <div class="shot">
+        <img class="media" src="mocks/AC8.jpg" alt="Cooper what-if simulation" />
+        <div class="cap">Test a change and see the projected lift before committing.</div>
+      </div>
+    </section>
+
+    <!-- 11 ACT -->
+    <section class="sec" id="act">
+      <div class="overline">Action plans</div>
+      <h2>From insight to a plan you can assign</h2>
+      <p>Ask what to do and Cooper returns prioritised action plans drawn from your drivers, themes, and topic impact, ready to assign to the right owners.</p>
+      <div class="prompts">
+        <div class="plabel">Try asking</div>
+        <span class="chip">What should we do to improve? Recommend some action plans</span>
+        <span class="chip">Show open action plans</span>
+        <span class="chip">Which action plans are overdue?</span>
+      </div>
+      <div class="shot">
+        <img class="media" src="mocks/AC9.jpg" alt="Cooper recommended action plan" />
+        <div class="cap">A prioritised plan, ready to assign.</div>
+      </div>
+    </section>
+
+    <!-- 12 MANAGERS -->
+    <section class="sec" id="managers">
+      <div class="overline">Managers &amp; leadership</div>
+      <h2>See every manager clearly, and coach at scale</h2>
+      <p>Rank managers, spot who needs coaching, and generate a personalised coaching brief for any manager, or all of them at once. Cooper also reads manager effectiveness and whether employees trust leadership.</p>
+      <div class="prompts">
+        <div class="plabel">Try asking</div>
+        <span class="chip">Who are the top and bottom managers?</span>
+        <span class="chip">Coaching brief for [name]</span>
+        <span class="chip">Did [name]'s coaching work?</span>
+        <span class="chip">Do employees trust leadership?</span>
+      </div>
+      <div class="shot">
+        <img class="media" src="mocks/AC10.jpg" alt="Cooper manager coaching brief" />
+        <div class="cap">A coaching one-pager for one manager, or every manager you have.</div>
+      </div>
+    </section>
+
+    <!-- 13 PROVE IT WORKED -->
+    <section class="sec" id="prove">
+      <div class="overline">Measure impact</div>
+      <h2>Close the loop, and show the impact</h2>
+      <p>Acting is only half the cycle. Cooper compares survey to survey and tells you whether the teams that acted actually improved, so you can show leadership what worked and run the next survey smarter.</p>
+      <div class="prompts">
+        <div class="plabel">Try asking</div>
+        <span class="chip">Did our action plans actually work?</span>
+        <span class="chip">What changed since the last survey?</span>
+        <span class="chip">Did teams that acted improve?</span>
+      </div>
+      <p class="small">The loop closes: what you did, and whether it moved the needle.</p>
+    </section>
+
+    <!-- 14 TRUST -->
+    <section class="trust" id="trust">
+      <div class="overline" style="color:var(--green-mid)">Anonymity &amp; safety</div>
+      <h2>Built on trust, by design</h2>
+      <p>Cooper answers what helps and protects what's private. It suppresses small groups, never returns raw verbatims, keeps every query locked to your own tenant, and refuses to identify other companies in a benchmark. Trust is a feature, not fine print.</p>
+      <div class="shot" style="margin-top:28px">
+        <img class="media" src="mocks/AC11.jpg" alt="Cooper protecting anonymity for a small team" />
+        <div class="cap" style="background:#12241c;color:#8fb9a8;border-color:#2d4a3c">Ask for a group too small, and Cooper protects them.</div>
+      </div>
+      <div class="badges">
+        <span>GDPR</span><span>SOC 2</span><span>ISO 27001</span>
+      </div>
+    </section>
+
+    <!-- 15 PROMPT LIBRARY -->
+    <section class="sec" id="library">
+      <div class="overline">Prompt library</div>
+      <h2>Every capability, one prompt away</h2>
+      <p>Cooper runs on 58 analysis tools. Here are the prompts that unlock the ones you'll reach for most, in lifecycle order. Paste any into the chat, no syntax needed.</p>
+      <table>
+        <thead><tr><th>Capability</th><th>Try asking</th></tr></thead>
+        <tbody>
+          <tr><td class="cap-cell">Participation forecast</td><td class="prompt-cell">Will we hit 90% participation?</td></tr>
+          <tr><td class="cap-cell">Reminder effectiveness</td><td class="prompt-cell">Did our reminders work?</td></tr>
+          <tr><td class="cap-cell">Send timing</td><td class="prompt-cell">What's the best day to send the next survey?</td></tr>
+          <tr><td class="cap-cell">Overall summary</td><td class="prompt-cell">Give me an overall summary of this survey</td></tr>
+          <tr><td class="cap-cell">Engagement score</td><td class="prompt-cell">What's our engagement score?</td></tr>
+          <tr><td class="cap-cell">Participation</td><td class="prompt-cell">What's the participation rate?</td></tr>
+          <tr><td class="cap-cell">eNPS</td><td class="prompt-cell">What's our eNPS? Show promoters, passives and detractors</td></tr>
+          <tr><td class="cap-cell">Sentiment</td><td class="prompt-cell">Are people positive or negative?</td></tr>
+          <tr><td class="cap-cell">Themes</td><td class="prompt-cell">What are employees saying? Top themes and pain points</td></tr>
+          <tr><td class="cap-cell">Topic sentiment</td><td class="prompt-cell">How do employees feel about compensation?</td></tr>
+          <tr><td class="cap-cell">Theme trends</td><td class="prompt-cell">Which themes are rising vs last survey?</td></tr>
+          <tr><td class="cap-cell">Executive synopsis</td><td class="prompt-cell">Give me an executive summary</td></tr>
+          <tr><td class="cap-cell">By segment</td><td class="prompt-cell">Show engagement by team / location / tenure</td></tr>
+          <tr><td class="cap-cell">Custom attribute</td><td class="prompt-cell">Engagement by Global Band</td></tr>
+          <tr><td class="cap-cell">Nested report</td><td class="prompt-cell">Excel report by business unit then location then band</td></tr>
+          <tr><td class="cap-cell">Heatmap</td><td class="prompt-cell">Show an engagement heatmap of drivers by team</td></tr>
+          <tr><td class="cap-cell">Export</td><td class="prompt-cell">Export the team breakdown to Excel</td></tr>
+          <tr><td class="cap-cell">Industry benchmark</td><td class="prompt-cell">How do we compare to our industry?</td></tr>
+          <tr><td class="cap-cell">Peer benchmark</td><td class="prompt-cell">We just started, is our score good?</td></tr>
+          <tr><td class="cap-cell">Compare groups</td><td class="prompt-cell">Compare engagement, Engineering vs Sales</td></tr>
+          <tr><td class="cap-cell">Org layer</td><td class="prompt-cell">Engagement by org layer, is there a frozen middle?</td></tr>
+          <tr><td class="cap-cell">Cascade</td><td class="prompt-cell">Does engagement flow down our managers' orgs?</td></tr>
+          <tr><td class="cap-cell">Span of control</td><td class="prompt-cell">Are bigger teams less engaged?</td></tr>
+          <tr><td class="cap-cell">Hotspots</td><td class="prompt-cell">Where exactly is the drag coming from?</td></tr>
+          <tr><td class="cap-cell">Change attribution</td><td class="prompt-cell">What drove the engagement drop?</td></tr>
+          <tr><td class="cap-cell">Anomalies</td><td class="prompt-cell">What's surprising in this survey?</td></tr>
+          <tr><td class="cap-cell">Confidence</td><td class="prompt-cell">How much can I trust these numbers?</td></tr>
+          <tr><td class="cap-cell">Representativeness</td><td class="prompt-cell">Is the sample representative or skewed?</td></tr>
+          <tr><td class="cap-cell">Forecast</td><td class="prompt-cell">Predict engagement for next quarter</td></tr>
+          <tr><td class="cap-cell">Attrition risk</td><td class="prompt-cell">Which teams are most at risk of attrition?</td></tr>
+          <tr><td class="cap-cell">Emerging risks</td><td class="prompt-cell">What emerging risks are showing up?</td></tr>
+          <tr><td class="cap-cell">Drivers</td><td class="prompt-cell">Where are we strong and weak?</td></tr>
+          <tr><td class="cap-cell">Driver impact</td><td class="prompt-cell">Which driver impacts engagement the most?</td></tr>
+          <tr><td class="cap-cell">What-if</td><td class="prompt-cell">What happens if we improve Recognition by 10%?</td></tr>
+          <tr><td class="cap-cell">Action plans</td><td class="prompt-cell">What should we do to improve?</td></tr>
+          <tr><td class="cap-cell">Manager rankings</td><td class="prompt-cell">Who are the top and bottom managers?</td></tr>
+          <tr><td class="cap-cell">Coaching brief</td><td class="prompt-cell">Coaching brief for [name]</td></tr>
+          <tr><td class="cap-cell">Manager improvement</td><td class="prompt-cell">Did [name]'s coaching work?</td></tr>
+          <tr><td class="cap-cell">Leadership trust</td><td class="prompt-cell">Do employees trust leadership?</td></tr>
+          <tr><td class="cap-cell">Action plan ROI</td><td class="prompt-cell">Did our action plans actually work?</td></tr>
+          <tr><td class="cap-cell">Survey diff</td><td class="prompt-cell">What changed since the last survey?</td></tr>
+          <tr><td class="cap-cell">Executive readout</td><td class="prompt-cell">Give me the full executive readout of this survey</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+</div>
+
+<script>
+// active-nav on scroll
+const links=[...document.querySelectorAll('#nav a')];
+const map=links.map(a=>({a,el:document.querySelector(a.getAttribute('href'))})).filter(x=>x.el);
+const obs=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));
+    const m=map.find(x=>x.el===e.target);if(m)m.a.classList.add('active');}});
+},{rootMargin:'-20% 0px -70% 0px'});
+map.forEach(x=>obs.observe(x.el));
+</script>
+</body>
+</html>
