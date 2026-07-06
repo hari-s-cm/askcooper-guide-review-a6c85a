@@ -53,8 +53,10 @@ main{padding:56px 0 96px;min-width:0}
 .hero .kicker{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--green-d);margin-bottom:16px}
 .hero h1{font-size:clamp(36px,5vw,52px);margin-bottom:20px;max-width:16ch}
 .hero .lede{font-size:19px;color:var(--muted);max-width:56ch}
-.hero .meta{margin-top:24px;display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--light);font-family:var(--mono)}
+.hero .meta{margin-top:24px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--light);font-family:var(--mono)}
 .hero .meta b{color:var(--green-d);font-weight:500}
+.hero .meta .watch{font-family:var(--sans);font-weight:600;font-size:14px;color:var(--green-cta,#0eb969);background:var(--green-pale);border:1px solid var(--border);border-radius:var(--r-pill);padding:7px 15px;transition:.15s}
+.hero .meta .watch:hover{background:var(--green-xl);border-color:var(--green-mid)}
 
 /* section */
 .sec{padding:56px 0;border-bottom:1px solid var(--border-l)}
@@ -72,7 +74,7 @@ main{padding:56px 0 96px;min-width:0}
 
 /* prompt chips */
 .prompts{margin:20px 0 8px}
-.prompts .plabel{font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--light);margin-bottom:10px}
+.prompts .plabel{font-size:12px;font-family:var(--sans);font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--green-d);margin-bottom:10px}
 .chip{display:inline-block;font-size:14px;color:var(--ink);background:var(--green-xl);border:1px solid var(--border);border-radius:var(--r-pill);padding:7px 15px;margin:0 8px 8px 0}
 .chip::before{content:"\201C";color:var(--green-d)}
 .chip::after{content:"\201D";color:var(--green-d)}
@@ -105,6 +107,15 @@ td.prompt-cell{color:var(--muted);font-style:italic}
 .trust p{color:#b8cfc5;max-width:60ch}
 .badges{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}
 .badges span{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:#8fb9a8;border:1px solid #2d4a3c;border-radius:var(--r-pill);padding:6px 14px}
+
+/* end CTA card */
+.endcta{margin:64px 0 8px}
+.endcta .card{background:var(--green-pale);border:1px solid var(--border);border-radius:var(--r);padding:48px 40px;text-align:center;box-shadow:var(--shadow-card)}
+.endcta .over{font-family:var(--sans);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--green-d);margin-bottom:12px}
+.endcta h2{font-size:30px;margin-bottom:12px}
+.endcta p{color:var(--muted);max-width:46ch;margin:0 auto 26px;font-size:16px}
+.endcta a.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:14px 28px;border-radius:8px;background:var(--green);color:#fff;transition:.15s}
+.endcta a.btn:hover{background:var(--green-d)}
 </style>
 </head>
 <body>
@@ -447,6 +458,16 @@ td.prompt-cell{color:var(--muted);font-style:italic}
           <tr><td class="cap-cell">Executive readout</td><td class="prompt-cell">Give me the full executive readout of this survey</td></tr>
         </tbody>
       </table>
+    </section>
+
+    <!-- END CTA -->
+    <section class="endcta">
+      <div class="card">
+        <div class="over">See it in action</div>
+        <h2>The 90-second version</h2>
+        <p>This guide is the deep dive. For the quick tour of everything Cooper can do, watch the overview.</p>
+        <a class="btn" href="#watch">&#9654;&nbsp; Watch the overview</a>
+      </div>
     </section>
 
   </main>
